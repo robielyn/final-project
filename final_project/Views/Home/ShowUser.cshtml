@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "ShowUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var userList = (IEnumerable<user>)ViewData["UserList"];
+}
+
+<h2>Show User</h2>
+<table border="1">
+    
+        @{
+            foreach (var item in userList)
+            {
+                <tr>
+                    <td style="padding: 20px;">@item.firstname</td>
+                    <td style="padding: 20px;">@item.lastname</td>
+                    <td style="padding: 20px;">@item.email</td>
+                    <td style="padding: 20px;">@item.password</td>
+                    <td style="padding: 20px;">
+                        <!-- Button 1 -->
+                        <button onclick="editUser('@item.firstname')">Edit</button>
+
+                        <!-- Button 2 -->
+                        <button onclick="deleteUser('@item.lastname')">Delete</button>
+
+                        <!-- Button 3 -->
+                        <button onclick="viewDetails('@item.password')">Update</button>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+
