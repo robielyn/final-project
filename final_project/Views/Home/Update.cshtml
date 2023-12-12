@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var up = (IEnumerable<user>)ViewData["User"];
+}
+<style>
+    /* Add some basic styling to the form */
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+
+    /* Style form groups */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    /* Style labels */
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    /* Style input fields */
+    input {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
+    /* Style the submit button */
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Add some spacing between the button and the last input field */
+    .form-group:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Optional: Style for error messages or validation feedback */
+    .error-message {
+        color: #dc3545;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+</style>
+
+
+@{
+    foreach (var item in up)
+    {
+
+
+        <form action="UpdateUser" method="POST">
+            <div class="form-group">
+                <input type="hidden" name="id" value="@item.userId" />
+                <label for="exampleInputEmail1">Firstname:</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="new_firstname" value="@item.firstname">
+
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Lastname:</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="new_lastname" value="@item.lastname">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email:</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="new_email" value="@item.email">
+
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="new_password" value="@item.password" />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    }
+}
+
