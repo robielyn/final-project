@@ -1,0 +1,41 @@
+﻿@using final_project.Models;
+@{
+    ViewBag.Title = "ShowUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var userList = (IEnumerable<user>)ViewData["UserList"];
+}
+<h2 style=" font-family:Arial, Helvetica, sans-serif; text-align: center; font-weight: bold; text-transform: uppercase; margin-bottom: 20px;">Show User</h2>
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <tr>
+        <th style="background-color: #F5CCA0; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); color: #092635; border: 1px solid #092635; padding: 12px; text-align: left;  text-transform: uppercase;">Firstname</th>
+        <th style="background-color: #F5CCA0; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); color: #092635; border: 1px solid #092635; padding: 12px; text-align: left;  text-transform: uppercase;">Lastname</th>
+        <th style="background-color: #F5CCA0; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); color: #092635; border: 1px solid #092635; padding: 12px; text-align: left;  text-transform: uppercase;">Email</th>
+        <th style="background-color: #F5CCA0; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); color: #092635; border: 1px solid #092635; padding: 12px; text-align: left;  text-transform: uppercase;">Password</th>
+        <th style="background-color: #F5CCA0; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); color: #092635; border: 1px solid #092635; padding: 12px; text-align: left;  text-transform: uppercase;">Action</th>
+    </tr>
+    @{
+        foreach (var item in userList)
+        {
+            <tr>
+                <td style=" background-color: #FFEFE8; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); border: 1px solid #092635; padding: 12px; text-align: left;">@item.firstname</td>
+                <td style="background-color: #FFEFE8;  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); border: 1px solid #092635; padding: 12px; text-align: left;">@item.lastname</td>
+                <td style=" background-color: #FFEFE8; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); border: 1px solid #092635; padding: 12px; text-align: left;">@item.email</td>
+                <td style=" background-color: #FFEFE8; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); border: 1px solid #092635; padding: 12px; text-align: left;">@item.password</td>
+                <td style=" background-color: #FFEFE8; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); border: 1px solid #092635; padding: 12px; text-align: left;">
+                    <!-- Edit Button -->
+                    <form method="post" action="Update" style="display: inline; margin-right: 5px;">
+                        <input type="hidden" name="id" value="@item.userId" />
+                        <button style="background-color: #FFE3BB; color: #092635; text-align: center; text-transform: uppercase; padding: 8px 9px; border: none; cursor: pointer;">Edit</button>
+                    </form>
+
+                    <!-- Delete Button -->
+                    <form method="post" action="Delete" style="display: inline;">
+                        <input type="hidden" name="id" value="@item.userId" />
+                        <button style="background-color: #FFE3BB; color: #092635; text-align: center; text-transform: uppercase; padding: 8px 9px; border: none; cursor: pointer; ">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
